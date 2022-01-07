@@ -6,11 +6,13 @@ RUN apk update && \
     curl -o- -L https://yarnpkg.com/install.sh | sh && \
     yarn global add create-next-app \
 
-COPY ../../ /app
-
 ENV TZ Asia/Tokyo
 ENV PATH $HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
+RUN yarn install && \
+    yarn build
+
+COPY ./ /app
 WORKDIR /app
 
-CMD ["/bin/ash"]
+CMD ["/bin/ash", "yarn", "start"]
