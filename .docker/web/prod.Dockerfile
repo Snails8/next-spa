@@ -15,4 +15,4 @@ RUN yarn install && \
 COPY ./ /app
 WORKDIR /app
 
-CMD ["/bin/ash", "yarn", "start"]
+CMD ["yarn", "start"]
