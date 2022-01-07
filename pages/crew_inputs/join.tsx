@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import FormLayout from "../../src/components/_layouts/Formlayout";
+import FormLayout from "../../src/components/_layouts/FormLayout";
 import {Card, Button, Container, Row, Col, Form} from "react-bootstrap";
 import UserForm from "../../src/components/user/UserForm";
 import AlertMessage from "../../src/components/_partials/Alert";

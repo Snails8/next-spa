@@ -39,9 +39,9 @@ const Layout = ({ children, title = 'title' }) => {
             {children}
           </Container>
 
-          { !isLoginPage &
-          <Footer/>
-          }
+          {/*{ !isLoginPage &*/}
+          {/*<Footer/>*/}
+          {/*}*/}
 
         </>
     )
