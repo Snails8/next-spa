@@ -1,8 +1,9 @@
-DC := docker-compose exec web
+DC := docker-compose exec front-app
 ARG := $1
 
 up:
 	docker-compose up -d --build
+	make yarn
 
 #create-project:
 #	docker-compose up -d --build
@@ -29,9 +30,8 @@ destroy:
 ps:
 	docker-compose ps
 
-web:
-	docker-compose exec web /bin/ash
+front-app:
+	docker-compose exec front-app /bin/ash
 
 yarn:
-	docker-compose exec web yarn
-	docker-compose exec web yarn dev
+	docker-compose exec front-app yarn dev
