@@ -5,14 +5,17 @@ import {useRequireLogin} from "../../src/hooks/useRequireLogin";
 import RestIndex from "../../src/components/rest";
 
 
-const Home = () => {
+const Home = ({users}) => {
   useRequireLogin();
 
   return (
       <>
         <Layout>
           <Col md="10" className="border">
-            <RestIndex data={users}/>
+            {
+              users !== null ?
+                  <RestIndex users={users}/> : <h4>データが存在しません</h4>
+            }
           </Col>
 
         </Layout>
@@ -27,7 +30,7 @@ export async function getServerSideProps(ctx) {
   let users = null
 
   try {
-    const res = await fetch(process.env.API_URL + '/api/hr_admin/users', {
+    const res = await fetch(process.env.API_URL + '/api/hr_admin/user', {
       headers: {
         cookie: ctx.req.headers.cookie
       }
@@ -37,9 +40,27 @@ export async function getServerSideProps(ctx) {
     console.log(e)
   }
 
+  console.log(users)
+
   return {
     props: {
       users: users
     }
   }
+
+  // [
+  //     {
+  //       id: 1,
+  //       name: 'たにし',
+  //       kana: 'タニシ',
+  //       email: 'sample@gmail.com',
+  //       email_verified_at: '2021-11-12T00:30:40.000000Z',
+  //       role: 'master',
+  //       post: '',
+  //       office_id: 1,
+  //       created_at: '2021-11-12T00:30:40.000000Z',
+  //       updated_at: '2021-11-12T00:30:40.000000Z'
+  //     }
+  // ]
+
 }
